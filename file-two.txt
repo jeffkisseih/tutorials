@@ -1,1 +1,45 @@
-desktop set
+Comprehensive Git Repository Access Guide: SSH vs HTTPS
+ (Short, Concise PDF Version)
+ Overview
+ A simplified overview comparing SSH and HTTPS methods for cloning and accessing Git repositories,
+ including setup, security, workflows, and troubleshooting.
+ Understanding Authentication Methods
+ HTTPS- Uses username + password or personal access tokens.- Easy setup, works behind firewalls.- Requires repeated authentication; less secure with passwords.
+ SSH- Uses public/private key pairs.- More secure, no repeated authentication.- Requires initial setup and key management.
+ HTTPS Method
+ Basic Setup
+ 1. Install Git
+ 2. Configure global settings (name, email, default branch)
+ 3. Enable credential caching or credential manager
+ Authentication- GitHub/GitLab/Bitbucket use Personal Access Tokens- Generate token → Use as password when prompted
+ SSH Method
+ SSH Key Setup
+ 1. Check existing keys (~/.ssh)
+ 2. Generate new key (Ed25519 recommended)
+ 3. Start SSH agent and add key
+ 4. Copy public key → Add to GitHub/GitLab/Bitbucket
+ 5. Test SSH connection
+ Cloning Repositories
+ Using HTTPS
+ git clone https://github.com/username/repository.git
+ Using SSH
+git clone git@github.com:username/repository.git
+ Daily Operations- Check remotes: git remote -v- Change remote URL: git remote set-url origin- Pull: git pull- Push: git push- Push with upstream: git push -u origin branch
+ Troubleshooting
+ HTTPS Issues- Authentication errors → regenerate token- SSL certificate issues → update CA certificates- Clear cached credentials if needed
+ SSH Issues- Permission denied → key not added- SSH agent not running → restart agent- Wrong key for repo → configure ~/.ssh/config
+ Best Practices
+ Security- Use Ed25519 keys- Protect keys with passphrases- Rotate keys/tokens regularly- Never share private keys
+ Productivity- Use SSH config for multiple accounts- Enable useful Git configs (autosetupremote, rebase, prune)
+ Quick Reference
+ Clone:
+ HTTPS: git clone https://...
+ SSH: git clone git@...
+ Check remote:
+ git remote -v
+ Change remote:
+ git remote set-url origin
+Test connection:
+ HTTPS: git ls-remote origin
+ SSH: ssh -T git@github.com
+ Support Resources- Git Documentation- GitHub Docs- GitLab Docs- Bitbucket Docs- Stack Overflow
